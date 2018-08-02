@@ -18,8 +18,7 @@ def upload():
 def index(variety = None):
 
     if request.args:
-        keys = [ifc.exchange for ifc in DBSession().query(InFutureContract, InFutureContract.exchange).distinct(InFutureContract.exchange)]
-        print(keys)
+        keys = ['郑商所', '大商所', '中金所', '上期所', '上期能源']
         if request.args['location'] in keys:
             contracts = DBSession().query(InFutureContract).filter(InFutureContract.product == request.args['variety']).first().to_dict()
         else:
